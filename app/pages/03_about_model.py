@@ -50,7 +50,7 @@ def plot_top_words(top_words_dict, classes):
 
 # ── UI ─────────────────────────────────────────────────────────
 
-st.title("🧠 How the Model Works")
+st.title(" How the Model Works")
 
 if not os.path.exists(os.path.join(MODELS_DIR, 'model_params.pkl')):
     st.error("⚠️ Model not trained yet. Run `python train.py` first.")

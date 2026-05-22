@@ -19,11 +19,11 @@ st.divider()
 
 col1, col2, col3 = st.columns(3)
 with col1:
-    st.info("**🔍 Classifier**\n\nClassify any news article into one of 5 categories in real-time.")
+    st.info("** Classifier**\n\nClassify any news article into one of 5 categories in real-time.")
 with col2:
-    st.success("**📊 Results & Analysis**\n\nConfusion matrix, accuracy, precision, recall, and F1 per class.")
+    st.success("** Results & Analysis**\n\nConfusion matrix, accuracy, precision, recall, and F1 per class.")
 with col3:
-    st.warning("**🧠 Model Explained**\n\nUnderstand how Naive Bayes and TF-IDF work under the hood.")
+    st.warning("** Model Explained**\n\nUnderstand how Naive Bayes and TF-IDF work under the hood.")
 
 st.divider()
 
@@ -36,7 +36,7 @@ This classifier is built **entirely from scratch** using only `numpy` and `panda
 |---|---|
 | **Dataset** | BBC News — 2,225 articles across 5 categories |
 | **Algorithm** | Multinomial Naive Bayes with Laplace Smoothing |
-| **Features** | TF-IDF (custom implementation) |
+| **Features** | TF-IDF |
 | **Categories** | Business · Entertainment · Politics · Sport · Tech |
 
 **Use the sidebar** to navigate between pages.

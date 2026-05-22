@@ -75,7 +75,7 @@ def plot_per_class_metrics(per_class, classes):
 
 # ── UI ─────────────────────────────────────────────────────────
 
-st.title("📊 Results & Analysis")
+st.title("Results & Analysis")
 
 if not os.path.exists(os.path.join(MODELS_DIR, 'meta.pkl')):
     st.error("⚠️ Model not trained yet. Run `python train.py` first.")

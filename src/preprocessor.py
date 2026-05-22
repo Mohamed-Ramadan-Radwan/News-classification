@@ -1,6 +1,3 @@
-"""
-Text Preprocessor - built from scratch (no nltk/spacy)
-"""
 
 import re
 import string

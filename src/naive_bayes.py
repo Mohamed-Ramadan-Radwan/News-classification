@@ -1,7 +1,3 @@
-"""
-Multinomial Naive Bayes - built from scratch (numpy only)
-Uses log probabilities to avoid underflow
-"""
 
 import math
 import pickle
@@ -11,10 +7,7 @@ from collections import Counter
 
 class MultinomialNaiveBayes:
     def __init__(self, alpha=1.0):
-        """
-        alpha: Laplace smoothing parameter
-               alpha=1.0 is standard Laplace smoothing
-        """
+
         self.alpha = alpha
         self.classes = []
         self.class_priors = {}       # log P(c)
@@ -24,16 +17,12 @@ class MultinomialNaiveBayes:
         self.class_log_likelihoods = {}  # log P(w|c) for all words
 
     def fit(self, X: np.ndarray, y: np.ndarray):
-        """
-        Train the model.
-        X: TF-IDF matrix (n_docs x vocab_size)
-        y: labels array
-        """
+
         n_docs, self.vocab_size = X.shape
         self.classes = list(np.unique(y))
 
         for cls in self.classes:
-            # Indices of docs belonging to this class
+
             cls_mask = (y == cls)
             cls_docs = X[cls_mask]
             n_cls = cls_mask.sum()
@@ -51,10 +40,7 @@ class MultinomialNaiveBayes:
         return self
 
     def _compute_log_likelihoods(self):
-        """
-        log P(w|c) = log((count(w,c) + alpha) / (total_words_c + alpha * V))
-        This is Laplace smoothing applied in log space.
-        """
+
         for cls in self.classes:
             counts = self.class_word_counts[cls]
             total = self.class_totals[cls]
@@ -77,7 +63,6 @@ class MultinomialNaiveBayes:
         return posteriors
 
     def predict(self, X: np.ndarray) -> list:
-        """Predict class for each document"""
         predictions = []
         for i in range(X.shape[0]):
             posteriors = self._compute_posterior(X[i])
@@ -86,10 +71,6 @@ class MultinomialNaiveBayes:
         return predictions
 
     def predict_proba(self, X: np.ndarray) -> list:
-        """
-        Return probability distribution over classes for each document.
-        Convert log posteriors to probabilities using softmax-style normalization.
-        """
         all_probas = []
         for i in range(X.shape[0]):
             log_posts = self._compute_posterior(X[i])
@@ -103,7 +84,6 @@ class MultinomialNaiveBayes:
         return all_probas
 
     def predict_single(self, x_vector: np.ndarray) -> tuple:
-        """Predict class and probability for a single doc vector"""
         posteriors = self._compute_posterior(x_vector)
         predicted_class = max(posteriors, key=posteriors.get)
 
@@ -117,7 +97,6 @@ class MultinomialNaiveBayes:
         return predicted_class, prob_dict
 
     def get_top_words_per_class(self, idx_to_word: dict, top_n=10) -> dict:
-        """Return top N most indicative words per class"""
         result = {}
         for cls in self.classes:
             log_lk = self.class_log_likelihoods[cls]
